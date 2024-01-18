@@ -1,5 +1,11 @@
 <nav>
-	<a class="<%= pageIdCode === 'welcome' ? 'active' : '' %>" href="/">Welcome</a>
-	<a class="<%= pageIdCode === 'books' ? 'active' : '' %>" href="/books">Books</a>
-	<a class="<%= pageIdCode === 'about' ? 'active' : '' %>" href="/about">About</a>
+	<a href="/"
+	   class="{{#ifEquals pageIdCode "
+	   welcome"}}active{{/ifEquals}}">Welcome</a>
+	<a href="/books"
+	   class="{{#ifEquals pageIdCode "
+	   books"}}active{{/ifEquals}}">Books</a>
+	<a href="/about"
+	   class="{{#ifEquals pageIdCode "
+	   about"}}active{{/ifEquals}}">About</a>
 </nav>

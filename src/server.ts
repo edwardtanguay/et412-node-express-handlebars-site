@@ -3,10 +3,16 @@ import * as config from './config';
 import path from 'path';
 import * as model from './model';
 import { engine } from 'express-handlebars';
+import Handlebars from 'handlebars';
+
 
 const app = express();
 const baseDir = process.cwd();
 const versionName = 'Handlebars 1.0';
+
+Handlebars.registerHelper('ifEquals', (arg1, arg2, options) => {
+	return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 
 app.engine('.hbs', engine({
 	extname: '.hbs',
@@ -23,7 +29,7 @@ app.get('/', (req, res) => {
 	res.render('pages/welcome', { versionName });
 });
 
-app.get('/welcome', (req, res) => {
+app.get('/welcome/222', (req, res) => {
 	res.render('pages/welcome', { versionName });
 });
 
