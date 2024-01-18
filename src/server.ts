@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 	res.render('pages/welcome', { versionName });
 });
 
-app.get('/welcome/222', (req, res) => {
+app.get('/welcome', (req, res) => {
 	res.render('pages/welcome', { versionName });
 });
 
@@ -48,9 +48,13 @@ app.get('/about', (req, res) => {
 	res.render('pages/about', {});
 });
 
+app.get('/api/books', async (req, res) => {
+	res.json(await model.getBooks());
+});
+
 app.get('*', (req, res) => {
 	res.status(404).render('pages/404');
-})
+});
 
 app.listen(config.getPort(), () => {
 	console.log(`Listening at http://localhost:${config.getPort()}`);
