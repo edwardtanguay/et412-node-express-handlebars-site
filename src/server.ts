@@ -34,7 +34,7 @@ app.get('/welcome', (req, res) => {
 });
 
 app.get('/books', async (req, res) => {
-	res.render('pages/books', { books: await model.getBooks() });
+	res.render('pages/books');
 });
 
 app.get('/book/:idCode', async (req, res) => {

@@ -2,22 +2,29 @@
 
 <div id="vueapp">
     <div class="books">
-        <div class="booksContent"></div>
-        <div class="spinner"></div>
+        <div v-for="book in books">
+            <a :href="`book/${book.idCode}`"><img class="book"
+                     :src="`images/books/${book.idCode}.png`" /></a>
+        </div>
     </div>
+    <div v-if="books.length === 0"
+         class="spinner"></div>
 </div>
 
 <script>
     Vue.createApp({
         data() {
             return {
-                message: ""
+                books: []
             };
         },
-
-        initialize() {
-            this.message = "TEXT FROM VUE.JS";
+        methods: {
+            initialize() {
+                (async () => {
+                    const response = await fetch('http://localhost:4116/api/books');
+                    this.books = await response.json();
+                })();
+            },
         },
-    },
     }).mount('#vueapp').initialize();
 </script>
