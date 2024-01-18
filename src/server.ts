@@ -2,20 +2,29 @@ import express from 'express';
 import * as config from './config';
 import path from 'path';
 import * as model from './model';
+import { engine } from 'express-handlebars';
 
 const app = express();
 const baseDir = process.cwd();
+const versionName = 'Handlebars 1.0';
 
-app.set('view engine', 'ejs');
+app.engine('.hbs', engine({
+	extname: '.hbs',
+	defaultLayout: 'main',
+	layoutsDir: path.join(baseDir, '/src/views/layouts'),
+	partialsDir: path.join(baseDir, '/src/views/partials'),
+}));
+
+app.set('view engine', '.hbs');
 app.set('views', path.join(baseDir, '/src/views'));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-	res.render('pages/welcome');
+	res.render('pages/welcome', { versionName });
 });
 
 app.get('/welcome', (req, res) => {
-	res.render('pages/welcome');
+	res.render('pages/welcome', { versionName });
 });
 
 app.get('/books', async (req, res) => {
