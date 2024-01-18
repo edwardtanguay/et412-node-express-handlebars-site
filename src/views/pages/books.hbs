@@ -1,8 +1,8 @@
 {{>menu pageIdCode="books"}}
 
-<div>
+<div id="vueapp">
+    <h1>TESTING: [\{{message}}]</h1>
     <p>There are {{{books.length}}} books.</p>
-    </p>
     <div class="books">
         {{#books}}
         <a href="book/{{{idCode}}}"><img class="book"
@@ -10,3 +10,18 @@
         {{/books}}
     </div>
 </div>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                message: ""
+            };
+        },
+        methods: {
+            initialize() {
+                this.message = "TEXT FROM VUE.JS";
+            },
+        },
+    }).mount('#vueapp').initialize();
+</script>

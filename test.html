@@ -1,12 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="">
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0" />
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<title>INFO SITE</title>
 </head>
+
 <body>
-	
+	<h1>The Info Site</h1>
+	<nav>
+		<a href="/"
+		   class="">Welcome</a>
+		<a href="/books"
+		   class="">Books</a>
+		<a href="/about"
+		   class="">About</a>
+	</nav>
+	<div id="vueapp">bbb
+		<p>There are 110 books.</p>
+		TESTING: [{{message}}]
+	</div>
+
+	<script>
+		Vue.createApp({
+			data() {
+				return {
+					message: "TEXT FROM VUE.JS"
+				};
+			}
+		}).mount('#vueapp').initialize();
+	</script>
 </body>
+
 </html>
